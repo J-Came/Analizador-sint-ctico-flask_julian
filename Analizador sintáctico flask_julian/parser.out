@@ -1,0 +1,545 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    CHAR
+    COMILLAS_DOBLES
+    CORCHETE_ABIERTO
+    CORCHETE_CERRADO
+    DISTINTO
+    DOUBLE
+    ENTERO
+    FLOAT
+    FLOTANTE
+    FOR
+    IF
+    IGUAL
+    INT
+    LLAVE_ABIERTO
+    LLAVE_CERRADO
+    MAIN
+    MAYOR_IGUAL
+    MAYOR_QUE
+    MENOR_IGUAL
+    MENOR_QUE
+    MODULO
+    NO_LOGICO
+    O_LOGICO
+    PAR_ABIERTO
+    PAR_CERRADO
+    POTENCIA
+    PUNTO_Y_COMA
+    RETURN
+    UMINUS
+    VOID
+    WHILE
+    Y_LOGICO
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> expresiones
+Rule 2     expresiones -> expresion
+Rule 3     expresiones -> expresion expresiones
+Rule 4     expresion -> identificador ASIGNACION expresion
+Rule 5     expresion -> expresion SUMA expresion
+Rule 6     expresion -> expresion RESTA expresion
+Rule 7     expresion -> expresion MULTIPLICACION expresion
+Rule 8     expresion -> expresion DIVISION expresion
+Rule 9     expresion -> PARENTESIS_ABIERTO expresion PARENTESIS_CERRADO
+Rule 10    expresion -> identificador
+Rule 11    expresion -> NUMERO
+Rule 12    identificador -> IDENTIFICADOR
+
+Terminals, with rules where they appear
+
+ASIGNACION           : 4
+CHAR                 : 
+COMILLAS_DOBLES      : 
+CORCHETE_ABIERTO     : 
+CORCHETE_CERRADO     : 
+DISTINTO             : 
+DIVISION             : 8
+DOUBLE               : 
+ENTERO               : 
+FLOAT                : 
+FLOTANTE             : 
+FOR                  : 
+IDENTIFICADOR        : 12
+IF                   : 
+IGUAL                : 
+INT                  : 
+LLAVE_ABIERTO        : 
+LLAVE_CERRADO        : 
+MAIN                 : 
+MAYOR_IGUAL          : 
+MAYOR_QUE            : 
+MENOR_IGUAL          : 
+MENOR_QUE            : 
+MODULO               : 
+MULTIPLICACION       : 7
+NO_LOGICO            : 
+NUMERO               : 11
+O_LOGICO             : 
+PARENTESIS_ABIERTO   : 9
+PARENTESIS_CERRADO   : 9
+PAR_ABIERTO          : 
+PAR_CERRADO          : 
+POTENCIA             : 
+PUNTO_Y_COMA         : 
+RESTA                : 6
+RETURN               : 
+SUMA                 : 5
+UMINUS               : 
+VOID                 : 
+WHILE                : 
+Y_LOGICO             : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+expresion            : 2 3 4 5 5 6 6 7 7 8 8 9
+expresiones          : 1 3
+identificador        : 4 10
+programa             : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . expresiones
+    (2) expresiones -> . expresion
+    (3) expresiones -> . expresion expresiones
+    (4) expresion -> . identificador ASIGNACION expresion
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULTIPLICACION expresion
+    (8) expresion -> . expresion DIVISION expresion
+    (9) expresion -> . PARENTESIS_ABIERTO expresion PARENTESIS_CERRADO
+    (10) expresion -> . identificador
+    (11) expresion -> . NUMERO
+    (12) identificador -> . IDENTIFICADOR
+
+    PARENTESIS_ABIERTO shift and go to state 5
+    NUMERO          shift and go to state 6
+    IDENTIFICADOR   shift and go to state 7
+
+    programa                       shift and go to state 1
+    expresiones                    shift and go to state 2
+    expresion                      shift and go to state 3
+    identificador                  shift and go to state 4
+
+state 1
+
+    (0) S' -> programa .
+
+
+
+state 2
+
+    (1) programa -> expresiones .
+
+    $end            reduce using rule 1 (programa -> expresiones .)
+
+
+state 3
+
+    (2) expresiones -> expresion .
+    (3) expresiones -> expresion . expresiones
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULTIPLICACION expresion
+    (8) expresion -> expresion . DIVISION expresion
+    (2) expresiones -> . expresion
+    (3) expresiones -> . expresion expresiones
+    (4) expresion -> . identificador ASIGNACION expresion
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULTIPLICACION expresion
+    (8) expresion -> . expresion DIVISION expresion
+    (9) expresion -> . PARENTESIS_ABIERTO expresion PARENTESIS_CERRADO
+    (10) expresion -> . identificador
+    (11) expresion -> . NUMERO
+    (12) identificador -> . IDENTIFICADOR
+
+    $end            reduce using rule 2 (expresiones -> expresion .)
+    SUMA            shift and go to state 9
+    RESTA           shift and go to state 10
+    MULTIPLICACION  shift and go to state 11
+    DIVISION        shift and go to state 12
+    PARENTESIS_ABIERTO shift and go to state 5
+    NUMERO          shift and go to state 6
+    IDENTIFICADOR   shift and go to state 7
+
+    expresion                      shift and go to state 3
+    expresiones                    shift and go to state 8
+    identificador                  shift and go to state 4
+
+state 4
+
+    (4) expresion -> identificador . ASIGNACION expresion
+    (10) expresion -> identificador .
+
+    ASIGNACION      shift and go to state 13
+    SUMA            reduce using rule 10 (expresion -> identificador .)
+    RESTA           reduce using rule 10 (expresion -> identificador .)
+    MULTIPLICACION  reduce using rule 10 (expresion -> identificador .)
+    DIVISION        reduce using rule 10 (expresion -> identificador .)
+    PARENTESIS_ABIERTO reduce using rule 10 (expresion -> identificador .)
+    NUMERO          reduce using rule 10 (expresion -> identificador .)
+    IDENTIFICADOR   reduce using rule 10 (expresion -> identificador .)
+    $end            reduce using rule 10 (expresion -> identificador .)
+    PARENTESIS_CERRADO reduce using rule 10 (expresion -> identificador .)
+
+
+state 5
+
+    (9) expresion -> PARENTESIS_ABIERTO . expresion PARENTESIS_CERRADO
+    (4) expresion -> . identificador ASIGNACION expresion
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULTIPLICACION expresion
+    (8) expresion -> . expresion DIVISION expresion
+    (9) expresion -> . PARENTESIS_ABIERTO expresion PARENTESIS_CERRADO
+    (10) expresion -> . identificador
+    (11) expresion -> . NUMERO
+    (12) identificador -> . IDENTIFICADOR
+
+    PARENTESIS_ABIERTO shift and go to state 5
+    NUMERO          shift and go to state 6
+    IDENTIFICADOR   shift and go to state 7
+
+    expresion                      shift and go to state 14
+    identificador                  shift and go to state 4
+
+state 6
+
+    (11) expresion -> NUMERO .
+
+    SUMA            reduce using rule 11 (expresion -> NUMERO .)
+    RESTA           reduce using rule 11 (expresion -> NUMERO .)
+    MULTIPLICACION  reduce using rule 11 (expresion -> NUMERO .)
+    DIVISION        reduce using rule 11 (expresion -> NUMERO .)
+    PARENTESIS_ABIERTO reduce using rule 11 (expresion -> NUMERO .)
+    NUMERO          reduce using rule 11 (expresion -> NUMERO .)
+    IDENTIFICADOR   reduce using rule 11 (expresion -> NUMERO .)
+    $end            reduce using rule 11 (expresion -> NUMERO .)
+    PARENTESIS_CERRADO reduce using rule 11 (expresion -> NUMERO .)
+
+
+state 7
+
+    (12) identificador -> IDENTIFICADOR .
+
+    ASIGNACION      reduce using rule 12 (identificador -> IDENTIFICADOR .)
+    SUMA            reduce using rule 12 (identificador -> IDENTIFICADOR .)
+    RESTA           reduce using rule 12 (identificador -> IDENTIFICADOR .)
+    MULTIPLICACION  reduce using rule 12 (identificador -> IDENTIFICADOR .)
+    DIVISION        reduce using rule 12 (identificador -> IDENTIFICADOR .)
+    PARENTESIS_ABIERTO reduce using rule 12 (identificador -> IDENTIFICADOR .)
+    NUMERO          reduce using rule 12 (identificador -> IDENTIFICADOR .)
+    IDENTIFICADOR   reduce using rule 12 (identificador -> IDENTIFICADOR .)
+    $end            reduce using rule 12 (identificador -> IDENTIFICADOR .)
+    PARENTESIS_CERRADO reduce using rule 12 (identificador -> IDENTIFICADOR .)
+
+
+state 8
+
+    (3) expresiones -> expresion expresiones .
+
+    $end            reduce using rule 3 (expresiones -> expresion expresiones .)
+
+
+state 9
+
+    (5) expresion -> expresion SUMA . expresion
+    (4) expresion -> . identificador ASIGNACION expresion
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULTIPLICACION expresion
+    (8) expresion -> . expresion DIVISION expresion
+    (9) expresion -> . PARENTESIS_ABIERTO expresion PARENTESIS_CERRADO
+    (10) expresion -> . identificador
+    (11) expresion -> . NUMERO
+    (12) identificador -> . IDENTIFICADOR
+
+    PARENTESIS_ABIERTO shift and go to state 5
+    NUMERO          shift and go to state 6
+    IDENTIFICADOR   shift and go to state 7
+
+    expresion                      shift and go to state 15
+    identificador                  shift and go to state 4
+
+state 10
+
+    (6) expresion -> expresion RESTA . expresion
+    (4) expresion -> . identificador ASIGNACION expresion
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULTIPLICACION expresion
+    (8) expresion -> . expresion DIVISION expresion
+    (9) expresion -> . PARENTESIS_ABIERTO expresion PARENTESIS_CERRADO
+    (10) expresion -> . identificador
+    (11) expresion -> . NUMERO
+    (12) identificador -> . IDENTIFICADOR
+
+    PARENTESIS_ABIERTO shift and go to state 5
+    NUMERO          shift and go to state 6
+    IDENTIFICADOR   shift and go to state 7
+
+    expresion                      shift and go to state 16
+    identificador                  shift and go to state 4
+
+state 11
+
+    (7) expresion -> expresion MULTIPLICACION . expresion
+    (4) expresion -> . identificador ASIGNACION expresion
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULTIPLICACION expresion
+    (8) expresion -> . expresion DIVISION expresion
+    (9) expresion -> . PARENTESIS_ABIERTO expresion PARENTESIS_CERRADO
+    (10) expresion -> . identificador
+    (11) expresion -> . NUMERO
+    (12) identificador -> . IDENTIFICADOR
+
+    PARENTESIS_ABIERTO shift and go to state 5
+    NUMERO          shift and go to state 6
+    IDENTIFICADOR   shift and go to state 7
+
+    expresion                      shift and go to state 17
+    identificador                  shift and go to state 4
+
+state 12
+
+    (8) expresion -> expresion DIVISION . expresion
+    (4) expresion -> . identificador ASIGNACION expresion
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULTIPLICACION expresion
+    (8) expresion -> . expresion DIVISION expresion
+    (9) expresion -> . PARENTESIS_ABIERTO expresion PARENTESIS_CERRADO
+    (10) expresion -> . identificador
+    (11) expresion -> . NUMERO
+    (12) identificador -> . IDENTIFICADOR
+
+    PARENTESIS_ABIERTO shift and go to state 5
+    NUMERO          shift and go to state 6
+    IDENTIFICADOR   shift and go to state 7
+
+    expresion                      shift and go to state 18
+    identificador                  shift and go to state 4
+
+state 13
+
+    (4) expresion -> identificador ASIGNACION . expresion
+    (4) expresion -> . identificador ASIGNACION expresion
+    (5) expresion -> . expresion SUMA expresion
+    (6) expresion -> . expresion RESTA expresion
+    (7) expresion -> . expresion MULTIPLICACION expresion
+    (8) expresion -> . expresion DIVISION expresion
+    (9) expresion -> . PARENTESIS_ABIERTO expresion PARENTESIS_CERRADO
+    (10) expresion -> . identificador
+    (11) expresion -> . NUMERO
+    (12) identificador -> . IDENTIFICADOR
+
+    PARENTESIS_ABIERTO shift and go to state 5
+    NUMERO          shift and go to state 6
+    IDENTIFICADOR   shift and go to state 7
+
+    identificador                  shift and go to state 4
+    expresion                      shift and go to state 19
+
+state 14
+
+    (9) expresion -> PARENTESIS_ABIERTO expresion . PARENTESIS_CERRADO
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULTIPLICACION expresion
+    (8) expresion -> expresion . DIVISION expresion
+
+    PARENTESIS_CERRADO shift and go to state 20
+    SUMA            shift and go to state 9
+    RESTA           shift and go to state 10
+    MULTIPLICACION  shift and go to state 11
+    DIVISION        shift and go to state 12
+
+
+state 15
+
+    (5) expresion -> expresion SUMA expresion .
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULTIPLICACION expresion
+    (8) expresion -> expresion . DIVISION expresion
+
+  ! shift/reduce conflict for SUMA resolved as shift
+  ! shift/reduce conflict for RESTA resolved as shift
+  ! shift/reduce conflict for MULTIPLICACION resolved as shift
+  ! shift/reduce conflict for DIVISION resolved as shift
+    PARENTESIS_ABIERTO reduce using rule 5 (expresion -> expresion SUMA expresion .)
+    NUMERO          reduce using rule 5 (expresion -> expresion SUMA expresion .)
+    IDENTIFICADOR   reduce using rule 5 (expresion -> expresion SUMA expresion .)
+    $end            reduce using rule 5 (expresion -> expresion SUMA expresion .)
+    PARENTESIS_CERRADO reduce using rule 5 (expresion -> expresion SUMA expresion .)
+    SUMA            shift and go to state 9
+    RESTA           shift and go to state 10
+    MULTIPLICACION  shift and go to state 11
+    DIVISION        shift and go to state 12
+
+  ! SUMA            [ reduce using rule 5 (expresion -> expresion SUMA expresion .) ]
+  ! RESTA           [ reduce using rule 5 (expresion -> expresion SUMA expresion .) ]
+  ! MULTIPLICACION  [ reduce using rule 5 (expresion -> expresion SUMA expresion .) ]
+  ! DIVISION        [ reduce using rule 5 (expresion -> expresion SUMA expresion .) ]
+
+
+state 16
+
+    (6) expresion -> expresion RESTA expresion .
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULTIPLICACION expresion
+    (8) expresion -> expresion . DIVISION expresion
+
+  ! shift/reduce conflict for SUMA resolved as shift
+  ! shift/reduce conflict for RESTA resolved as shift
+  ! shift/reduce conflict for MULTIPLICACION resolved as shift
+  ! shift/reduce conflict for DIVISION resolved as shift
+    PARENTESIS_ABIERTO reduce using rule 6 (expresion -> expresion RESTA expresion .)
+    NUMERO          reduce using rule 6 (expresion -> expresion RESTA expresion .)
+    IDENTIFICADOR   reduce using rule 6 (expresion -> expresion RESTA expresion .)
+    $end            reduce using rule 6 (expresion -> expresion RESTA expresion .)
+    PARENTESIS_CERRADO reduce using rule 6 (expresion -> expresion RESTA expresion .)
+    SUMA            shift and go to state 9
+    RESTA           shift and go to state 10
+    MULTIPLICACION  shift and go to state 11
+    DIVISION        shift and go to state 12
+
+  ! SUMA            [ reduce using rule 6 (expresion -> expresion RESTA expresion .) ]
+  ! RESTA           [ reduce using rule 6 (expresion -> expresion RESTA expresion .) ]
+  ! MULTIPLICACION  [ reduce using rule 6 (expresion -> expresion RESTA expresion .) ]
+  ! DIVISION        [ reduce using rule 6 (expresion -> expresion RESTA expresion .) ]
+
+
+state 17
+
+    (7) expresion -> expresion MULTIPLICACION expresion .
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULTIPLICACION expresion
+    (8) expresion -> expresion . DIVISION expresion
+
+  ! shift/reduce conflict for SUMA resolved as shift
+  ! shift/reduce conflict for RESTA resolved as shift
+  ! shift/reduce conflict for MULTIPLICACION resolved as shift
+  ! shift/reduce conflict for DIVISION resolved as shift
+    PARENTESIS_ABIERTO reduce using rule 7 (expresion -> expresion MULTIPLICACION expresion .)
+    NUMERO          reduce using rule 7 (expresion -> expresion MULTIPLICACION expresion .)
+    IDENTIFICADOR   reduce using rule 7 (expresion -> expresion MULTIPLICACION expresion .)
+    $end            reduce using rule 7 (expresion -> expresion MULTIPLICACION expresion .)
+    PARENTESIS_CERRADO reduce using rule 7 (expresion -> expresion MULTIPLICACION expresion .)
+    SUMA            shift and go to state 9
+    RESTA           shift and go to state 10
+    MULTIPLICACION  shift and go to state 11
+    DIVISION        shift and go to state 12
+
+  ! SUMA            [ reduce using rule 7 (expresion -> expresion MULTIPLICACION expresion .) ]
+  ! RESTA           [ reduce using rule 7 (expresion -> expresion MULTIPLICACION expresion .) ]
+  ! MULTIPLICACION  [ reduce using rule 7 (expresion -> expresion MULTIPLICACION expresion .) ]
+  ! DIVISION        [ reduce using rule 7 (expresion -> expresion MULTIPLICACION expresion .) ]
+
+
+state 18
+
+    (8) expresion -> expresion DIVISION expresion .
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULTIPLICACION expresion
+    (8) expresion -> expresion . DIVISION expresion
+
+  ! shift/reduce conflict for SUMA resolved as shift
+  ! shift/reduce conflict for RESTA resolved as shift
+  ! shift/reduce conflict for MULTIPLICACION resolved as shift
+  ! shift/reduce conflict for DIVISION resolved as shift
+    PARENTESIS_ABIERTO reduce using rule 8 (expresion -> expresion DIVISION expresion .)
+    NUMERO          reduce using rule 8 (expresion -> expresion DIVISION expresion .)
+    IDENTIFICADOR   reduce using rule 8 (expresion -> expresion DIVISION expresion .)
+    $end            reduce using rule 8 (expresion -> expresion DIVISION expresion .)
+    PARENTESIS_CERRADO reduce using rule 8 (expresion -> expresion DIVISION expresion .)
+    SUMA            shift and go to state 9
+    RESTA           shift and go to state 10
+    MULTIPLICACION  shift and go to state 11
+    DIVISION        shift and go to state 12
+
+  ! SUMA            [ reduce using rule 8 (expresion -> expresion DIVISION expresion .) ]
+  ! RESTA           [ reduce using rule 8 (expresion -> expresion DIVISION expresion .) ]
+  ! MULTIPLICACION  [ reduce using rule 8 (expresion -> expresion DIVISION expresion .) ]
+  ! DIVISION        [ reduce using rule 8 (expresion -> expresion DIVISION expresion .) ]
+
+
+state 19
+
+    (4) expresion -> identificador ASIGNACION expresion .
+    (5) expresion -> expresion . SUMA expresion
+    (6) expresion -> expresion . RESTA expresion
+    (7) expresion -> expresion . MULTIPLICACION expresion
+    (8) expresion -> expresion . DIVISION expresion
+
+  ! shift/reduce conflict for SUMA resolved as shift
+  ! shift/reduce conflict for RESTA resolved as shift
+  ! shift/reduce conflict for MULTIPLICACION resolved as shift
+  ! shift/reduce conflict for DIVISION resolved as shift
+    PARENTESIS_ABIERTO reduce using rule 4 (expresion -> identificador ASIGNACION expresion .)
+    NUMERO          reduce using rule 4 (expresion -> identificador ASIGNACION expresion .)
+    IDENTIFICADOR   reduce using rule 4 (expresion -> identificador ASIGNACION expresion .)
+    $end            reduce using rule 4 (expresion -> identificador ASIGNACION expresion .)
+    PARENTESIS_CERRADO reduce using rule 4 (expresion -> identificador ASIGNACION expresion .)
+    SUMA            shift and go to state 9
+    RESTA           shift and go to state 10
+    MULTIPLICACION  shift and go to state 11
+    DIVISION        shift and go to state 12
+
+  ! SUMA            [ reduce using rule 4 (expresion -> identificador ASIGNACION expresion .) ]
+  ! RESTA           [ reduce using rule 4 (expresion -> identificador ASIGNACION expresion .) ]
+  ! MULTIPLICACION  [ reduce using rule 4 (expresion -> identificador ASIGNACION expresion .) ]
+  ! DIVISION        [ reduce using rule 4 (expresion -> identificador ASIGNACION expresion .) ]
+
+
+state 20
+
+    (9) expresion -> PARENTESIS_ABIERTO expresion PARENTESIS_CERRADO .
+
+    SUMA            reduce using rule 9 (expresion -> PARENTESIS_ABIERTO expresion PARENTESIS_CERRADO .)
+    RESTA           reduce using rule 9 (expresion -> PARENTESIS_ABIERTO expresion PARENTESIS_CERRADO .)
+    MULTIPLICACION  reduce using rule 9 (expresion -> PARENTESIS_ABIERTO expresion PARENTESIS_CERRADO .)
+    DIVISION        reduce using rule 9 (expresion -> PARENTESIS_ABIERTO expresion PARENTESIS_CERRADO .)
+    PARENTESIS_ABIERTO reduce using rule 9 (expresion -> PARENTESIS_ABIERTO expresion PARENTESIS_CERRADO .)
+    NUMERO          reduce using rule 9 (expresion -> PARENTESIS_ABIERTO expresion PARENTESIS_CERRADO .)
+    IDENTIFICADOR   reduce using rule 9 (expresion -> PARENTESIS_ABIERTO expresion PARENTESIS_CERRADO .)
+    $end            reduce using rule 9 (expresion -> PARENTESIS_ABIERTO expresion PARENTESIS_CERRADO .)
+    PARENTESIS_CERRADO reduce using rule 9 (expresion -> PARENTESIS_ABIERTO expresion PARENTESIS_CERRADO .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for SUMA in state 15 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 15 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLICACION in state 15 resolved as shift
+WARNING: shift/reduce conflict for DIVISION in state 15 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 16 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 16 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLICACION in state 16 resolved as shift
+WARNING: shift/reduce conflict for DIVISION in state 16 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 17 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 17 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLICACION in state 17 resolved as shift
+WARNING: shift/reduce conflict for DIVISION in state 17 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 18 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 18 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLICACION in state 18 resolved as shift
+WARNING: shift/reduce conflict for DIVISION in state 18 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 19 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 19 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLICACION in state 19 resolved as shift
+WARNING: shift/reduce conflict for DIVISION in state 19 resolved as shift
